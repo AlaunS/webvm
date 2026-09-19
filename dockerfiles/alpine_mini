@@ -1,0 +1,8 @@
+FROM --platform=linux/386 alpine:latest
+RUN apk add --no-cache build-base python3 py3-pip vim git bash
+RUN adduser -D -u 1000 user
+RUN echo 'root:password' | chpasswd
+WORKDIR /home/user/
+ENV HOME="/home/user" TERM="xterm" USER="user" SHELL="/bin/bash" EDITOR="vim" LANG="C.UTF-8"
+RUN chmod -R 777 /home/user
+CMD [ "/bin/bash" ]
